@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Мои книги</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Дата получения</th>
+            <th>Количество дней на руках</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in borrow_records %}
+        <tr>
+            <td>{{ record.book.title }}</td>
+            <td>{{ record.borrow_date }}</td>
+            <td>{{ record.days_on_hand }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

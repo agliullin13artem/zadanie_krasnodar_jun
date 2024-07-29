@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Каталог книг{% endblock %}
+{% block content %}
+<h1>Каталог книг</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Взять книгу</button>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Жанр</th>
+            <th>Действие</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.title }} <button onclick="copyToClipboard('{{ book.title }}')">Копировать</button></td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.genre }}</td>
+            <td>
+                <!-- Логика для кнопки взять/вернуть книгу -->
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<script>
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert('Название книги скопировано в буфер обмена!');
+        });
+    }
+</script>
+{% endblock %}

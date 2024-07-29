@@ -1,0 +1,30 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<h2>Должники</h2>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Имя пользователя</th>
+            <th>Имя</th>
+            <th>Фамилия</th>
+            <th>Адрес</th>
+            <th>Название книги</th>
+            <th>Дата выдачи</th>
+            <th>Дней на руках</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for record in debtors %}
+        <tr>
+            <td>{{ record.user.username }}</td>
+            <td>{{ record.user.first_name }}</td>
+            <td>{{ record.user.last_name }}</td>
+            <td>{{ record.user.address }}</td>
+            <td>{{ record.book.title }}</td>
+            <td>{{ record.borrow_date }}</td>
+            <td>{{ record.borrow_date|timesince }} назад</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
