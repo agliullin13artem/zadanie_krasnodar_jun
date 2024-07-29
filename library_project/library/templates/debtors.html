@@ -1,4 +1,4 @@
-{% extends 'library/base.html' %}
+{% extends 'base.html' %}
 {% block content %}
 <h2>Должники</h2>
 <table class="table">
@@ -14,7 +14,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for record in debtors %}
+        {% for record in borrow_records %}
         <tr>
             <td>{{ record.user.username }}</td>
             <td>{{ record.user.first_name }}</td>
@@ -22,7 +22,7 @@
             <td>{{ record.user.address }}</td>
             <td>{{ record.book.title }}</td>
             <td>{{ record.borrow_date }}</td>
-            <td>{{ record.borrow_date|timesince }} назад</td>
+            <td>{{ record.days_on_hand }} дней</td>
         </tr>
         {% endfor %}
     </tbody>

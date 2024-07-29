@@ -45,6 +45,13 @@ def my_books(request):
     borrow_records = BorrowRecord.objects.filter(user=request.user)
     return render(request, 'my_books.html', {'borrow_records': borrow_records})
 
+@login_required
+def debtors_list(request):
+    # Отбираем все записи о взятых книгах, у которых нет даты возврата
+    borrow_records = BorrowRecord.objects.filter(return_date__isnull=True)
+    return render(request, 'debtors.html', {'borrow_records': borrow_records})
+
+
 def user_logout(request):
     logout(request)
     return redirect('user_login')
